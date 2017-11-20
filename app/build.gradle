@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.testfolio"
+        minSdkVersion 17
+        targetSdkVersion 25
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        packagingOptions {
+            exclude 'META-INF/NOTICE' // will not include NOTICE file
+            exclude 'META-INF/LICENSE' // will not include LICENSE file
+            // as noted by @Vishnuvathsan you may also need to include
+            // variations on the file name. It depends on your dependencies.
+            // Some other common variations on notice and license file names
+            exclude 'META-INF/notice'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/license'
+            exclude 'META-INF/license.txt'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.folioreader:folioreader:0.3.2'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'org.readium:r2-fetcher:0.1.2'
+    compile 'org.readium:r2-parser:0.1.2'
+    compile 'com.github.eschao:android-PageFlip:1.0.2'
+    compile 'org.readium:r2-server:0.1.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
